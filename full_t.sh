@@ -3,7 +3,6 @@
 
 # Update and install necessary packages
 apt-get update
-apt-get upgrade -y
 apt-get install curl socat git -y
 
 # Pause for 2 seconds
