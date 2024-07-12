@@ -87,7 +87,7 @@ sudo touch /var/www/html/file.txt
 sudo chown www-data:www-data /var/www/html/file.txt
 sudo chmod 664 /var/www/html/file.txt
 sleep 2
-cd full_t
+cd ~/full_t
 sleep 2
 # Install Python 3 venv and create a virtual environment
 sudo apt install -y python3-venv
