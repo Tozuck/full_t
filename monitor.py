@@ -60,9 +60,9 @@ def update_stats_file():
 
     with open('/var/www/html/file.txt', 'w') as file:
         file.write(f"cpu usage = {cpu_usage}%\n")
-        file.write(f"network usage speed per sec receive = {usage_per_sec_recv:.2f} Mbps\n")
-        file.write(f"total network usage downloaded = {total_recv:.2f} Mbps\n")
-        file.write(f"total network usage uploaded = {total_sent:.2f} Mbps\n")
+        file.write(f"network usage speed per sec receive = {usage_per_sec_recv:.2f} \n")
+        file.write(f"total network usage downloaded = {total_recv:.2f} \n")
+        file.write(f"total network usage uploaded = {total_sent:.2f} \n")
 
 # Initialize variables for the first run
 last_bytes_recv = 0
