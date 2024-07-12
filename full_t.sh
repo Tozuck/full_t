@@ -96,6 +96,10 @@ python3 -m venv myenv
 # Activate the virtual environment and install dependencies
 source myenv/bin/activate
 pip install -r req.txt
+chmod +x ~/full_t/start_monitor.sh
+
+# Add the script to crontab to run at reboot
+(crontab -l 2>/dev/null; echo "@reboot /home/$(whoami)/full_t/start_monitor.sh") | crontab -
 
 # Run monitor.py in the background
 nohup python monitor.py > monitor.log 2>&1 &
