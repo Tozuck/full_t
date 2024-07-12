@@ -78,7 +78,7 @@ sleep 3
 # Run Docker Compose to start Marzban node
 cd ~/Marzban-node
 docker compose up -d
-sleep 2
+sleep 10
 
 sudo apt install -y apache2
 
@@ -87,10 +87,18 @@ sudo touch /var/www/html/file.txt
 sudo chown www-data:www-data /var/www/html/file.txt
 sudo chmod 664 /var/www/html/file.txt
 
-# Install Python dependencies from req.txt
-sudo apt install -y python3-pip
-sudo pip3 install -r req.txt
+# Install Python 3 venv and create a virtual environment
+sudo apt install -y python3-venv
+python3 -m venv myenv
+
+# Activate the virtual environment and install dependencies
+source myenv/bin/activate
+pip install -r req.txt
 
 # Run monitor.py in the background
-nohup python3 monitor.py > monitor.log 2>&1 &
+nohup python monitor.py > monitor.log 2>&1 &
+
+# Deactivate the virtual environment
+deactivate
+
 
