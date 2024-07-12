@@ -1,4 +1,4 @@
-# t_node
+
 To use this script, run the following command:
 
 ```
