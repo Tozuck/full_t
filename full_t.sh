@@ -1,32 +1,25 @@
 #!/bin/bash
-# GT_marz: A script to set up Marzban node
 
-# Update and install necessary packages
 apt-get update
 apt-get install curl socat git -y
 
-# Pause for 2 seconds
-sleep 2
 
-# Disable UFW
 ufw disable
 
-# Install Docker
+
 curl -fsSL https://get.docker.com | sh
 
-# Pause for 2 seconds
-sleep 2
 
-# Clone the Marzban-node repository
+
+
 git clone https://github.com/Gozargah/Marzban-node
 
-# Create directory for Marzban-node
+
 mkdir /var/lib/marzban-node
 
-# Pause for 2 seconds
-sleep 2
 
-# Edit the docker-compose.yml file
+
+
 cat <<EOL > ~/Marzban-node/docker-compose.yml
 services:
   marzban-node:
@@ -41,7 +34,6 @@ services:
       - /var/lib/marzban-node:/var/lib/marzban-node
 EOL
 
-# Create SSL certificate file
 cat <<EOL > /var/lib/marzban-node/ssl_client_cert.pem
 -----BEGIN CERTIFICATE-----
 MIIEnDCCAoQCAQAwDQYJKoZIhvcNAQENBQAwEzERMA8GA1UEAwwIR296YXJnYWgw
@@ -72,39 +64,9 @@ ZKuDULjL23UUbAP5l+/obg1NbzhTg2y0dbkU08yl4Dc=
 -----END CERTIFICATE-----
 EOL
 
-# Pause for 3 seconds
-sleep 3
 
-# Run Docker Compose to start Marzban node
 cd ~/Marzban-node
 docker compose up -d
-sleep 10
 
-sudo apt install -y apache2
-
-# Create /var/www/html/file.txt with appropriate permissions
-sudo touch /var/www/html/file.txt
-sudo chown www-data:www-data /var/www/html/file.txt
-sudo chmod 664 /var/www/html/file.txt
-sleep 2
-cd ~/full_t
-sleep 2
-# Install Python 3 venv and create a virtual environment
-sudo apt install -y python3-venv
-python3 -m venv myenv
-
-# Activate the virtual environment and install dependencies
-source myenv/bin/activate
-pip install -r req.txt
-chmod +x ~/full_t/start_monitor.sh
-
-# Add the script to crontab to run at reboot
-(crontab -l 2>/dev/null; echo "@reboot bash ~/full_t/start_monitor.sh") | crontab -
-
-# Run monitor.py in the background
-nohup python monitor.py > monitor.log 2>&1 &
-
-# Deactivate the virtual environment
-deactivate
 
 
